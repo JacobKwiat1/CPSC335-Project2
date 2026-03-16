@@ -18,21 +18,20 @@ def solve_bfs(grid):
                 start = (row,column)
                 break
     
+    #start counting time and search for path to end
     start_time = perf_counter()
     paths = {start:start}
     Q.append(start)
     while Q and not found:
         current = Q.popleft()
         visited_count += 1
-        print("current spot:", current)
         if grid[current[0]][current[1]] == 'E':
             found == True
-            print(gen_path(*current,paths,start))
             return gen_path(*current, paths, start), visited_count, perf_counter()-start_time
         add_to_queue(*current, grid, Q, paths)
     return None, visited_count, perf_counter()-start_time
 
-
+#traces and returns path using the dictionary
 def gen_path(x, y, paths, start):
     result = []
     while not (x, y) == start:
@@ -40,10 +39,12 @@ def gen_path(x, y, paths, start):
         (x, y) = paths[(x,y)]
     return result
 
+#adds new coordinates to queue and defines them in the dictionary
 def add_to_queue(x, y, grid, queue, paths):
     directions = [(-1,0),(1,0), (0,-1), (0,1)]
     for dx, dy in directions:
+        #ensures x+dx and y+dy fit within the range of the grid. 
+        # Then makes sure the new coordinates aren't in paths and the new location isn't a wall
         if  0 <= x+dx < len(grid) and 0 <= y+dy < len(grid[0]) and not (new_coords := (x + dx, y + dy)) in paths and not grid[x+dx][y+dy] == '#':
-            print("adding dude:", new_coords)
             queue.append(new_coords)
             paths[new_coords] = (x,y)
