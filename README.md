@@ -37,3 +37,6 @@ gui.py → GUI and visualization
 maze1.txt / maze2.txt / maze3.txt → sample test mazes  
 README.md → project documentation
 ```
+
+### Code References
+https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
