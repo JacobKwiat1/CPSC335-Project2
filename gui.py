@@ -1,7 +1,7 @@
 import tkinter as tk
 import random
-from DFS import DFS_maze
-from BFS import solve_bfs
+from DFS_solver import solve_dfs
+from BFS_solver import solve_bfs
 
 CELL = 40
 ROWS = 7
@@ -104,7 +104,7 @@ def solve():
     draw_maze()
 
     if algo.get() == "DFS":
-        path, visited, runtime = DFS_maze(maze)
+        path, visited, runtime = solve_dfs(maze)
     else:
         path, visited, runtime = solve_bfs(maze)
 

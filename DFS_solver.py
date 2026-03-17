@@ -15,7 +15,7 @@ def neighbor_added_on_stack(maze , current_spot, Rows, Columns, direct, visited,
                 visited.add(next_spot)
                 parent[next_spot] = current_spot
             
-def DFS_maze(maze):
+def solve_dfs(maze):
     """main dfs function to set up the grid layout"""
     Rows = len(maze)
     Columns = len(maze[0])
@@ -24,7 +24,7 @@ def DFS_maze(maze):
     end = None
     for row in range(Rows):
      for column in range(Columns):
-        """start and end variables creat"""
+        """start and end variables created"""
         if maze[row][column] == 'S':
               start = (row,column)
         elif maze[row][column] == 'E':
@@ -37,7 +37,8 @@ def DFS_maze(maze):
     if start is None or end is None:
         print("Maze needs one S and E")
         return None,0,0
-    
+
+    """"sets up the directions """
     start_time = perf_counter()
     stack = [start]
     visited = {start}
@@ -47,6 +48,7 @@ def DFS_maze(maze):
     direct =[(-1,0),(1,0), (0,-1), (0,1)]
 
     while stack:
+        """gets the path """
         current_spot = stack.pop()
         print("Current:", current_spot)
         visited_count += 1
@@ -66,71 +68,6 @@ def DFS_maze(maze):
     runtime = perf_counter() - start_time
     return None, visited_count, runtime
 
-if __name__ == "__main__":
-    print("==== Maze 1: Normal maze ===")
-    maze1 = [
-        ['S', '.', '.', '#', '#'],
-        ['#', '#', '.', 'E', '#'],
-        ['#', '#', '#', '#', '#']
-    ]
 
-    path, visited_count, runtime = DFS_maze(maze1)
-    
-    if path is None:
-        print("path not found")
-    else:
-        print("Path:", path)
-        print("Visited:", visited_count)
-        print("Runtime:", runtime)
-    print("====Maze 2: Blocked maze===")
-    maze2 = [
-        ['S', '#', '#', '#', '#'],
-        ['#', '#', '#', 'E', '#'],
-        ['#', '#', '#', '#', '#']
-    ]
-
-    path, visited_count, runtime = DFS_maze(maze2)
-    
-    if path is None:
-        print("path not found")
-    else:
-        print("Path:", path)
-        print("Visited:", visited_count)
-        print("Runtime:", runtime)
-    
-    print("====Maze 3: No start or end maze===")
-    maze3 = [
-        ['#', '#', '#', '#', '#'],
-        ['#', '#', '#', '#', '#'],
-        ['#', '#', '#', '#', '#']
-    ]
-
-    path, visited_count, runtime = DFS_maze(maze3)
-    
-    if path is None:
-        print("path not found")
-    else:
-        print("Path:", path)
-        print("Visited:", visited_count)
-        print("Runtime:", runtime)
-    print("====Maze 4: Long maze ===")
-    maze4 = [
-        ['S', '.', '#', '#', '#','#','#'],
-        ['#', '.', '#', '.', '.','#','#'],
-        ['.', '.', '.', '.', '.','#','#'],
-        ['#', '#', '#', '#', '.','.','.'],
-        ['#', '#', '#', '#', '.','#','.'],
-        ['#', '#', '#', '#', '.','#','.'],
-        ['#', '#', '#', '#', '#','#','E']
-    ]
-
-    path, visited_count, runtime = DFS_maze(maze4)
-    
-    if path is None:
-        print("path not found")
-    else:
-        print("Path:", path)
-        print("Visited:", visited_count)
-        print("Runtime:", runtime)
 
     
