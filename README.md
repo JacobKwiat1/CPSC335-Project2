@@ -23,12 +23,17 @@ The GUI displays:
 python3 gui.py
 ```
 
-3. Generate a maze, choose DFS or BFS, then click **Solve Maze**.
+3. You can:
+- Generate a random maze
+- Load a maze from a .txt file
+- Choose DFS or BFS
+- Click **Solve Maze** to visualize the path
 
 ## Files
 ```
-DFS.py     → DFS solver  
-BFS.py     → BFS solver  
-gui.py     → GUI and visualization  
-README.md  → project documentation
+DFS_solver.py → DFS solver  
+BFS_solver.py → BFS solver  
+gui.py → GUI and visualization  
+maze1.txt / maze2.txt / maze3.txt → sample test mazes  
+README.md → project documentation
 ```
